@@ -4,6 +4,7 @@ const Course = ({ course }) => {
     <div>
       <Header course={course} />
       <Content course={course} />
+      <Total parts={course.parts} />
     </div>
   )
 }
@@ -36,13 +37,14 @@ const Part = ({ part }) => {
 }
 
 // Component to display total number of the exercises on the course
-/*
-const Total = (props) => {
+const Total = ({ parts }) => {
+  const total = parts.reduce( (cB, cV) => cB + cV.exercises, 0);
   return (
-    <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
+    <p>
+      total of {total} exercises
+    </p>
   )
 }
-*/
 
 // Main component
 const App = () => {
@@ -64,6 +66,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
